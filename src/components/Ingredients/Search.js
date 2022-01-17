@@ -23,7 +23,7 @@ const Search = React.memo((props) => {
           });
         }
 
-        // onLoadIngredients(loadedIngredients)
+        onLoadIngredients(loadedIngredients)
       });
   }, [enteredFilter, onLoadIngredients]);
 
