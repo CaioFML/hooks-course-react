@@ -26,6 +26,10 @@ const Ingredients = () => {
       });
   }, []);
 
+  useEffect(() => {
+    console.log('RENDERING INGREDIENTS', userIngredients)
+  }, [userIngredients])
+
   const addIngredientHandler = (ingredient) => {
     fetch(
       "https://hooks-react-test-fa578-default-rtdb.firebaseio.com/ingredients.json",
