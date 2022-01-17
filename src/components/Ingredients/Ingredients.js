@@ -30,6 +30,10 @@ const Ingredients = () => {
     console.log('RENDERING INGREDIENTS', userIngredients)
   }, [userIngredients])
 
+  const filteredIngredientsHandler = filteredIngredients => {
+    setUserIngredients(filteredIngredients)
+  }
+
   const addIngredientHandler = (ingredient) => {
     fetch(
       "https://hooks-react-test-fa578-default-rtdb.firebaseio.com/ingredients.json",
@@ -61,7 +65,7 @@ const Ingredients = () => {
       <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
-        <Search />
+        <Search onLoadIngredients={filteredIngredientsHandler} />
         <IngredientList
           ingredients={userIngredients}
           onRemoveItem={removeIngredientHandler}
