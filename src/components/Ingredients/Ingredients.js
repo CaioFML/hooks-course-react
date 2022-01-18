@@ -27,7 +27,7 @@ const ingredientReducer = (currentIngredients, action) => {
 
 const Ingredients = () => {
   const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
-  const { isLoading, error, data, sendRequest, reqExtra, reqIdentifier } =
+  const { isLoading, error, data, sendRequest, reqExtra, reqIdentifier, clear } =
     useHttp();
 
   // const [userIngredients, setUserIngredients] = useState([]);
@@ -58,31 +58,6 @@ const Ingredients = () => {
       ingredient,
       "ADD_INGREDIENT"
     );
-
-    // setIsLoading(true);
-    // dispatchHttp({ type: "SEND" });
-    // fetch(
-    //   "https://hooks-react-test-fa578-default-rtdb.firebaseio.com/ingredients.json",
-    //   {
-    //     method: "POST",
-    //     body: JSON.stringify(ingredient),
-    //     headers: { "Content-Type": "application/json" },
-    //   }
-    // )
-    //   .then((response) => {
-    //     dispatchHttp({ type: "RESPONSE" });
-    //     return response.json();
-    //   })
-    //   .then((responseData) => {
-    //     // setUserIngredients((prevUserIngredients) => [
-    //     //   ...prevUserIngredients,
-    //     //   { id: responseData.name, ...ingredient },
-    //     // ]);
-    //     dispatch({
-    //       type: "ADD",
-    //       ingredient: { id: responseData.name, ...ingredient },
-    //     });
-    //   });
   }, [sendRequest]);
 
   const removeIngredientHandler = useCallback(
@@ -98,10 +73,6 @@ const Ingredients = () => {
     [sendRequest]
   );
 
-  const clearError = () => {
-    // dispatchHttp({ type: "CLEAR" });
-  };
-
   const ingredientList = useMemo(() => {
     return (
       <IngredientList
@@ -113,7 +84,7 @@ const Ingredients = () => {
 
   return (
     <div className="App">
-      {error && <ErrorModal onClose={clearError}>{error}</ErrorModal>}
+      {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
 
       <IngredientForm
         onAddIngredient={addIngredientHandler}
